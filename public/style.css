@@ -87,7 +87,7 @@ video {
     margin: 10px 0;
 }
 
-.main__chat__window {
+#main__chat__window {
     flex-grow: 1;
     overflow-y: auto;
 }
@@ -111,4 +111,8 @@ video {
     color: white;
     padding: 0;
     list-style-type: none;
+}
+
+.unmute {
+    color: #cc3833;
 }

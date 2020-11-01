@@ -27,13 +27,12 @@ io.on("connection", socket => {
   //user will join a room
   socket.on("join-room", (roomId, userId) => {
     socket.join(roomId);
-      socket.to(roomId).broadcast.emit("user-connected", userId); // to broadcast a msg to all member
+    socket.to(roomId).broadcast.emit("user-connected", userId); // to broadcast a msg to all member
 
-
-      //receiving the message
-      socket.on("message", message => {
-          io.to(roomId).emit("createMessage",message)
-      })
+    //receiving the message
+    socket.on("message", message => {
+      io.to(roomId).emit("createMessage", message);
+    });
   });
 });
-server.listen(3000);
+server.listen(process.env.PORT || 3000);

@@ -10,7 +10,7 @@ var peer = new Peer(
   {
     path: "/peerjs", //specify the path for peers
     host: "/",
-    port: "3000"
+    port: "443"
   }
 );
 
@@ -93,7 +93,8 @@ const scrollToBottom = () => {
 
 //mute our video
 const muteUnmute = () => {
-  const enabled = myVideoStream.getAudioTracks()[0].enabled;
+  const enabled = myVideoStream.getAudioTracks()[0].enabled; //getting my audio track and
+  //if enabled then disable them else enable them
   if (enabled) {
     myVideoStream.getAudioTracks()[0].enabled = true;
     setUnmuteButton();
@@ -101,4 +102,53 @@ const muteUnmute = () => {
     setMuteButton();
     myVideoStream.getAudioTracks()[0].enabled = false;
   }
+};
+
+const setMuteButton = () => {
+  const html = `<span class="material-icons">
+                            mic
+                        </span>
+                        <span>Mute</span>
+                        `;
+  document.querySelector(".main__mute__button").innerHTML = html;
+};
+
+const setUnmuteButton = () => {
+  const html = `<span class=" unmute material-icons">
+                            mic_off
+                        </span>
+                        <span>Unmute</span>
+                        `;
+  document.querySelector(".main__mute__button").innerHTML = html;
+};
+
+//stop or play video
+
+const playStop = () => {
+  let enabled = myVideoStream.getVideoTracks()[0].enabled;
+  if (enabled) {
+    myVideoStream.getVideoTracks()[0].enabled = false;
+    setPlayVideo();
+  } else {
+    setStopVideo();
+    myVideoStream.getVideoTracks()[0].enabled = true;
+  }
+};
+
+const setStopVideo = () => {
+  const html = ` <span class="material-icons">
+                            videocam
+                        </span>
+                        <span>Stop Video</span>
+`;
+  document.querySelector(".main__video__button").innerHTML = html;
+};
+
+const setPlayVideo = () => {
+  const html = `<span class=" unmute material-icons">
+                            videocam_off
+                        </span>
+                        <span>Play Video</span>
+`;
+  document.querySelector(".main__video__button").innerHTML = html;
 };
